@@ -1,0 +1,48 @@
+/* ----------------------------------------------------------------------------------------- 
+	Form
+----------------------------------------------------------------------------------------- */
+
+.form-control,
+.form-group-lg .form-control,
+.input-group-lg > .form-control,
+.input-group-addon.input-lg             { @include border-radius(3px); }
+
+.form-group                             { margin-bottom: 20px; position: relative;
+	.form-group                         { margin: 0 -15px; }
+	.table                              { margin: 0; }
+	.btn-lg                             { min-width: 100px; }
+}
+
+.form-group-title                       { font-size: 17px; line-height: 28px; color: $blue-dark; padding-left: 4px; padding-right: 4px; font-weight: 400; margin: 0 -4px 20px -4px; border-bottom: 1px solid $gray; }
+
+
+// form control - focus
+.form-control:focus                     { color: $black; border-color: $blue; @include box-shadow(none); }
+
+
+// form control - disabled, readonly
+.form-control:disabled,
+.form-control[readonly]                 { background-color: $gray-light; color: $gray-dark; 
+    &:focus                             { border-color: $gray-dark; }
+}
+
+
+// description
+.form-group .description                { padding: 0 8px; }
+.form-group .description-lg             { font-size: 14px; padding: 4px 13px; }
+
+
+// required
+.required                               {
+	label:before                        { content: "*"; color: $red; padding-right: 4px; }
+	.radio label:before                 { display: none; }
+	.checkbox label:before              { display: none; }
+}
+th.required:after                       { content: "*"; color: $red; padding-left: 4px; }
+
+
+// select disabled
+.select-disabled                        { position: relative; /* opacity: 0.8; */ }
+.select-disabled:after                  { content: ""; position: absolute; width: 100%; top: 0; right: 0; left: 0; bottom: 0; height: 100%; }
+
+

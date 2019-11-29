@@ -1,0 +1,118 @@
+/* ----------------------------------------------------------------------------------------- 
+	Buttons
+----------------------------------------------------------------------------------------- */
+
+.btn						{ border: none; color: $black; 
+	&:hover					{ color: $black; }
+	&:active,
+	&:focus					{ outline: none; box-shadow: none; }
+}
+
+// button colors
+
+// blue
+.btn-info,
+.btn-blue					{ background: $blue; color: $white;
+	&:hover,
+	&:active,
+	&:focus					{ background: darken($blue,10%); color: $white; }
+}
+.btn-blue-light				{ background: $blue-light; color: $black; 
+	&:hover,
+	&:active,
+	&:focus					{ background: darken($blue-light,10%); color: $black; }
+}
+.btn-primary,
+.btn-blue-dark				{ background: $blue-dark; color: $white;
+	&:hover,
+	&:active,
+	&:focus                 { background: darken($blue-dark,10%); color: $white; }
+}
+
+// gray
+.btn-gray					{ background: $gray; color: $black;
+	&:hover,
+	&:active,
+	&:focus					{ background: darken($gray,10%); color: $black; }
+}
+.btn-gray-light				{ background: $gray-light; color: $black; 
+	&:hover,
+	&:active,
+	&:focus					{ background: darken($gray-light,10%); color: $black; }
+}
+.btn-default,
+.btn-secondary,
+.btn-gray-dark				{ background: $gray-dark; color: $white;
+	&:hover,
+	&:active,
+	&:focus					{ background: darken($gray-dark,10%); color: $white; }
+}
+
+// yellow
+.btn-warning,
+.btn-yellow					{ background: $yellow; color: $black; 
+	&:hover,
+	&:active,
+	&:focus					{ background: darken($yellow,10%); color: $black; }
+}
+.btn-yellow-dark			{ background: $yellow-dark; color: $black;
+	&:hover,
+	&:active,
+	&:focus					{ background: darken($yellow-dark,10%); color: $black; }
+}
+
+// red
+.btn-danger,
+.btn-red					{ background: $red; color: $white;
+	&:hover,
+	&:active,
+	&:focus					{ background: darken($red,10%); color: $white; }
+}
+
+// green
+.btn-success,
+.btn-green					{ background: $green; color: $black; 
+	&:hover,
+	&:active,
+	&:focus					{ background: darken($green,10%); color: $black; }
+}
+
+// black
+.btn-black					{ background: $black; color: $white;
+	&:hover,
+	&:active,
+	&:focus					{ background: darken($black,10%); color: $white; }
+}
+
+// white
+.btn-white					{ background: $white; color: $black; 
+	&:hover,
+	&:active,
+	&:focus					{ background: darken($white,10%); color: $black; }
+}
+
+
+
+.btn, 
+.btn-lg,
+.btn-group-lg > .btn,
+.input-group-btn > .btn		{ @include border-radius(3px); }
+
+
+.btn-group-lg > .btn,
+.btn-lg						{ padding: 7px 16px; font-weight: 300; }
+
+.btn-group-xs > .btn,
+.btn-xs						{ min-width: 20px; padding: 2px 6px; font-size: 12px; line-height: 16px; }
+
+.btn-drag:hover				{ cursor: move; cursor: -webkit-grab; cursor: -moz-grab; }
+.btn-drag:active			{ cursor: move; cursor: -webkit-grabbing; cursor: -moz-grabbing; }
+
+
+// disabled buttons
+.btn.disabled:not(.btn-link),
+.btn:disabled:not(.btn-link){ opacity: 1; cursor: not-allowed; background: $gray; color: $black;
+    &:hover                 { background: $gray; color: $black; }
+}
+a.btn.disabled              { pointer-events: all; }
+

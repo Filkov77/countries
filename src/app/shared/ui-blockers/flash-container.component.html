@@ -1,0 +1,12 @@
+<div class="flash-container-wrapper">
+    <div class="clear-all-items-wrapper alert m-0" *ngIf="items.length > 1">
+        <a href="#"
+           class="clear-all-items action-link"
+           title="Clear all"
+           aria-label="Clear all"
+           (click)="$event.preventDefault(); clearAll()">
+            <span class="fa fa-times" aria-hidden="true"></span> clear all
+        </a>
+    </div>
+    <div app-flash-message *ngFor="let item of items" [item]="item" (onRemove)="removeMessage(item)"></div>
+</div>
