@@ -6,6 +6,10 @@
 /tmp
 /out-tsc
 
+# css compiled output - these create merge conflicts, but are compiled by webpack from .scss files anyway
+/src/assets/css/*.css
+/src/assets/css/*.map
+
 # dependencies
 /node_modules
 
@@ -34,6 +38,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+package-lock.json
 
 # e2e
 /e2e/*.js
