@@ -5,7 +5,6 @@ import { Observable, of } from 'rxjs';
 import { environment } from 'environments/environment';
 
 import { CountryListElement } from './country-list-element.i';
-import { CountryList } from './country-list.i';
 
 @Injectable({
     providedIn: 'root'
@@ -21,5 +20,8 @@ export class CountryService {
         return this.http.get<CountryListElement[]>(fetchUri);
     }
 
+    public getCountryDetails() {
+
+    }
 
 }
