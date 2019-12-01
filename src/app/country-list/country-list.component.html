@@ -1,3 +1,46 @@
-<p>
-  country-list works!
-</p>
+<p-dataView #dv [value]="countries" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder">
+    <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="sortOptions" placeholder="Sort By" (onChange)="onSortChange($event, value)">
+                    </p-dropdown>
+                </div>
+                <div class="ui-g-6 ui-md-4 filter-container">
+                    <div style="position:relative">
+                        <input type="search" pInputText placeholder="Search by name"
+                            (input)="dv.filter($event.target.value)">
+                    </div>
+                </div>
+                <div class="ui-g-6 ui-md-4" style="text-align:right">
+                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <ng-template let-country pTemplate="listItem">
+        <div class="ui-g-12">
+            <div class="country-list-detail" (click)="showCountryDetails(country)">
+                <div>
+                    <img src="{{country.flag}}" alt="Flag of {{country.name}}">
+                    <div class="ui-g">
+                        <div class="ui-g-12"><b>{{country.name}}</b></div>
+                        <div class="ui-g-12">Population: <b>{{country.population}}</b></div>
+                    </div>
+                </div>
+                <button pButton type="button" icon="pi pi-search" (click)="selectCountry($event, country)"></button>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template let-country pTemplate="gridItem">
+        <div style="padding:.5em" class="ui-g-12 ui-md-3">
+            <p-panel [header]="country.name" [style]="{'text-align':'center'}">
+                <img src="{{country.flag}}" alt="Flag of {{country.name}}" width=60>
+                <div class="country-list-detail">Population: {{country.population}}</div>
+                <hr class="ui-widget-content" style="border-top:0">
+                <button pButton type="button" icon="pi pi-search" (click)="selectCountry($event, country)"
+                    style="margin-top:0"></button>
+            </p-panel>
+        </div>
+    </ng-template>
+</p-dataView>
