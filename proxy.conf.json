@@ -1,0 +1,12 @@
+{
+  "/rest": {
+    "target": "https://restcountries.eu",
+    "secure": false,
+    "changeOrigin": true
+  },
+   "/data": {
+    "target": "https://restcountries.eu",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

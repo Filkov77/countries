@@ -1,5 +1,7 @@
 {
-    "cSpell.words": [
-        "mixins"
-    ]
+  "typescript.preferences.quoteStyle": "single",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  }
 }

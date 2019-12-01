@@ -1,0 +1,7 @@
+<div [ngClass]="['flash-message-wrapper alert', 'alert-' + (item.uiClass || 'secondary') ]">
+    {{item.value}}
+    <span *ngIf="item.iconClass" [attr.class]="item.iconClass"></span>
+    <a href="#" class="clear-item btn" title="Clear" aria-label="Clear" (click)="$event.preventDefault(); remove()">
+        <span class="fa fa-times" aria-hidden="true"></span>
+    </a>
+</div>
