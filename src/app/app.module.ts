@@ -9,14 +9,18 @@ import { PanelModule } from 'primeng/panel';
 
 import { AppComponent } from './app.component';
 import { ConnectionDropDetectionModule } from './connection-drop-detection';
-import { CountryListComponent } from './country-list/country-list.component';
+import { CountryDetailsComponent } from './main-view/country-details/country-details.component';
+import { CountryListComponent } from './main-view/country-list/country-list.component';
+import { MainViewComponent } from './main-view/main-view.component';
 import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        CountryListComponent
+        CountryListComponent,
+        MainViewComponent,
+        CountryDetailsComponent
     ],
     imports: [
         // #region Required by AppComponent
