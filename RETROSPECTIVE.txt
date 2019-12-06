@@ -1,0 +1,10 @@
+Retrospective:
+
+What can be done better
+Concentrate on requirements more intead of trying to show broader knowledge
+Learn more about design
+Unit tests, show at least happy flows of all components
+Estimate system configuration with more time
+Find more time to analyse 3-d party controls before using them
+Spend more time on implementation
+Test more
