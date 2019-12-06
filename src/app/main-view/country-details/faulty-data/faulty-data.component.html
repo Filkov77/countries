@@ -1,0 +1,3 @@
+<tag-input [(ngModel)]="countryNames" (onSelect)="onSelect($event)" [modelAsStrings]="true" [onAdding]="validateTag">
+</tag-input>
+<button class="btn primary-colored" (click)="submitBorders()">Submit suggested borders</button>

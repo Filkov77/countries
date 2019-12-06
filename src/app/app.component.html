@@ -1,8 +1,6 @@
 <div app-flash-container></div>
-<div app-line-loader *ngIf="showLineLoader" class="delayed fixed"></div>
-<div app-overlay [show]="showOverlay && isConnected" [delayed]="true" [fixed]="true" [useMessage]="true" [useIndicator]="true" [message]="overlayMessage">
-    <!-- TODO progress bars -->
+<div app-overlay [show]="showOverlay && isConnected" [delayed]="true" [fixed]="true" [useMessage]="true"
+    [useIndicator]="true" [message]="overlayMessage">
 </div>
 <div app-connection-error-overlay *ngIf="!isConnected"></div>
-<div app-country-list></div>
-
+<div app-main-view></div>

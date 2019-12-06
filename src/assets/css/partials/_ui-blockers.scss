@@ -1,28 +1,22 @@
 [app-overlay]                   { z-index: 99997; position: absolute; top: 0; left: 0; width: 0; height: 0; display: block; opacity: 0;
-    
+
     &.fixed                     { position: fixed; }
-    
+
     &.show                      { top: 0; left: 0; right: 0; bottom: 0; width: auto; height: auto; opacity: 1; }
     &.hide                      { top: 0; left: 0; width: 0; height: 0; opacity: 0; }
-    
-    &.delayed                   { @include transition; @include transition-delay(0.2s); opacity: 0; } 
+
+    &.delayed                   { @include transition; @include transition-delay(0.2s); opacity: 0; }
     &.show.delayed              { opacity: 1; }
     &.hide.delayed              { top: 0; left: 0; right: 0; bottom: 0; width: auto; height: auto; animation: hideoverlay 300ms ease-out 200ms forwards; }
-    
-    
+
+
     .overlay                    { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #000; opacity: 0.4; }
     .overlay-indicator          { position: absolute; top: 50%; left: 50%; color: white; margin-left: -14px; margin-top: -14px; }
     .overlay-message            { position: absolute; top: 50%; line-height: 24px; margin-top: -24px; left: 20px; right: 20px; color: $white; text-shadow: 1px 1px 0 $black; }
     .overlay-indicator + .overlay-message { margin-top: 28px; }
 }
 
-[app-line-loader]               { position: absolute; top: 0; left: 0; right: 0; z-index: 99998; background-color: transparent; height: 5px; overflow: hidden; 
-    &.fixed                     { position: fixed; }
-    .line-loader-indicator      { height: 5px; width: 25%; position: absolute; background-color: $blue; -webkit-animation: 2s linear 0s normal forwards infinite moveright; animation: 2s linear 0s normal forwards infinite moveright; }
-    &.delayed                   { -webkit-animation: 400ms ease 0s normal forwards 1 fadein; animation: 400ms ease 0s normal forwards 1 fadein; }
-}
-
-[app-flash-container]           { position: absolute; z-index: 99999; width: 100%; top: 0; left: 0; padding: 0 54px; pointer-events: none; 
+[app-flash-container]           { position: absolute; z-index: 99999; width: 100%; top: 0; left: 0; padding: 0 54px; pointer-events: none;
     .flash-container-wrapper    { margin: 12px auto; min-width: 300px; width: 50%; }
     .clear-all-items-wrapper    { pointer-events: auto; position: relative; text-align: center; }
 
@@ -37,7 +31,7 @@
     0%      { width: auto; height: auto; }
     50%     { width: auto; height: auto; }
     99%     { width: 0; height: auto; right: auto; bottom: auto; }
-    100%    { width: 0; height: 0; } 
+    100%    { width: 0; height: 0; }
 }
 
 @keyframes delayshow {
@@ -49,7 +43,7 @@
 @-webkit-keyframes delayshow {
     0%      { opacity: 0 }
     50%     { opacity: 0 }
-    100%    { opacity: 1 } 
+    100%    { opacity: 1 }
 }
 
 @keyframes fadein {
@@ -81,7 +75,7 @@
 // connection error
 .connection-error               { position: fixed; left: 0; right: 0; top: 0; bottom: 0; background: $gray-dark; z-index: 999999;
     .error-wrap                 { width: 400px; position: absolute; left: 50%; top: 50%; margin-left: -200px; margin-top: -50px; @include border-radius(5px); overflow: hidden;
-        .error-icon             { width: 100px; height: 100px; font-size: 60px; background: $blue; text-align: center; display: inline-block; float: left; color: $white; padding-top: 17px; 
+        .error-icon             { width: 100px; height: 100px; font-size: 60px; background: $blue; text-align: center; display: inline-block; float: left; color: $white; padding-top: 17px;
             svg                 { width: 50px; }
         }
         .error-description      { padding: 20px; float: left; width: 300px; height: 100px; background: $gray-light;

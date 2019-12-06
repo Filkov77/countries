@@ -1,0 +1,28 @@
+<div app-overlay message="Processing, please wait..." [show]="showOverlay" [delayed]="true"></div>
+
+<p-dataView #dv [value]="countries" layout="grid" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder">
+    <p-header class="primary-colored">
+        <div class="ui-helper-clearfix">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="sortOptions" placeholder="Sort By" (onChange)="onSortChange($event, value)">
+                    </p-dropdown>
+                </div>
+                <div class="ui-g-6 ui-md-4 filter-container">
+                    <div style="position:relative">
+                        <input type="search" pInputText placeholder="Search by name"
+                            (input)="dv.filter($event.target.value)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <ng-template let-country pTemplate="gridItem">
+        <div class="ui-g-12 ui-md-3" (click)="showCountryDetails(country)">
+            <p-panel [header]="country.name">
+                <img src="{{country.flag}}" alt="Flag of {{country.name}}">
+                <div class="country-list-detail">Population: {{country.population}}</div>
+            </p-panel>
+        </div>
+    </ng-template>
+</p-dataView>

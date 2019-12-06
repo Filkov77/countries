@@ -1,22 +1,31 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TagInputModule } from 'ngx-chips';
 import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
 import { PanelModule } from 'primeng/panel';
 
 import { AppComponent } from './app.component';
 import { ConnectionDropDetectionModule } from './connection-drop-detection';
-import { CountryListComponent } from './country-list/country-list.component';
+import { CountryDetailsComponent } from './main-view/country-details/country-details.component';
+import { FaultyDataComponent } from './main-view/country-details/faulty-data/faulty-data.component';
+import { WorldMapComponent } from './main-view/country-details/world-map/world-map.component';
+import { CountryListComponent } from './main-view/country-list/country-list.component';
+import { MainViewComponent } from './main-view/main-view.component';
 import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        CountryListComponent
+        CountryListComponent,
+        MainViewComponent,
+        CountryDetailsComponent,
+        WorldMapComponent,
+        FaultyDataComponent
     ],
     imports: [
         // #region Required by AppComponent
@@ -32,7 +41,10 @@ import { SharedModule } from './shared/shared.module';
         // #endregion
         PanelModule,
         DropdownModule,
-        DataViewModule
+        DataViewModule,
+
+        TagInputModule,
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [

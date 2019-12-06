@@ -1,0 +1,7 @@
+<div class="prefix-panel primary-dark-colored">
+    <button *ngIf="selectedCountryName" class="btn primary-light-colored" (click)=showCountryList()>show country
+        list</button>
+</div>
+<div app-country-list *ngIf="!selectedCountryName" (selectCountry)="setSelectedCountry($event)"></div>
+<div app-country-details *ngIf="selectedCountryName" [selectedCountryName]="selectedCountryName"
+    (selectCountry)="setSelectedCountry($event)"></div>

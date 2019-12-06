@@ -1,0 +1,35 @@
+<div app-overlay message="Processing, please wait..." [show]="showOverlay" [delayed]="true"></div>
+
+<div *ngIf="loaded">
+    <div class="flex">
+        <div app-world-map [countryCode]="countryDetailsViewModel.countryCode"
+            (selectCountryOnMap)="setActiveCountryByCode($event)">
+        </div>
+        <div class="ui-g-12 ui-md-3">
+            <p-panel header="Languages">
+                <div *ngFor="let language of countryDetailsViewModel.languages">
+                    <div>{{language}}</div>
+                </div>
+            </p-panel>
+            <p-panel header="Currencies">
+                <div *ngFor="let currency of countryDetailsViewModel.currencies">
+                    <div>{{currency}}</div>
+                </div>
+            </p-panel>
+            <p-panel header="Timezones" class="primary-light-colored">
+                <div *ngFor="let timezone of countryDetailsViewModel.timezones">
+                    <div>{{timezone}}</div>
+                </div>
+            </p-panel>
+            <p-panel header="Borders">
+                <div *ngFor="let border of countryDetailsViewModel.borders">
+                    <div><a href="#" (click)="$event.preventDefault(); setActiveCountry(border)">{{border}}</a></div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+
+    <button class="btn primary-colored" (click)="toggleFaultyDataPanel()">report faulty data</button>
+    <div *ngIf="showFaultyDataPanel" app-faulty-data [countryNames]="countryDetailsViewModel.borders"></div>
+
+</div>
