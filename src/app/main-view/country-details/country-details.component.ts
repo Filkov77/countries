@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { iif, Observable, of } from 'rxjs';
-import { finalize, map, mergeMap, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, mergeMap, tap } from 'rxjs/operators';
 
 import { CountryService } from 'app/backend-api/country.service';
 import { CountryDetails } from 'app/backend-api/models/country-details.i';

@@ -1,29 +1,35 @@
 <div app-overlay message="Processing, please wait..." [show]="showOverlay" [delayed]="true"></div>
 
 <div *ngIf="loaded">
-    <div app-world-map [countryCode]="countryDetailsViewModel.countryCode"
-        (selectCountryOnMap)="setActiveCountryByCode($event)">
-    </div>
-    <div>Languages:
-        <div *ngFor="let language of countryDetailsViewModel.languages">
-            <div>{{language}}</div>
+    <div class="flex">
+        <div app-world-map [countryCode]="countryDetailsViewModel.countryCode"
+            (selectCountryOnMap)="setActiveCountryByCode($event)">
+        </div>
+        <div class="ui-g-12 ui-md-3">
+            <p-panel header="Languages">
+                <div *ngFor="let language of countryDetailsViewModel.languages">
+                    <div>{{language}}</div>
+                </div>
+            </p-panel>
+            <p-panel header="Currencies">
+                <div *ngFor="let currency of countryDetailsViewModel.currencies">
+                    <div>{{currency}}</div>
+                </div>
+            </p-panel>
+            <p-panel header="Timezones" class="primary-light-colored">
+                <div *ngFor="let timezone of countryDetailsViewModel.timezones">
+                    <div>{{timezone}}</div>
+                </div>
+            </p-panel>
+            <p-panel header="Borders">
+                <div *ngFor="let border of countryDetailsViewModel.borders">
+                    <div><a href="#" (click)="$event.preventDefault(); setActiveCountry(border)">{{border}}</a></div>
+                </div>
+            </p-panel>
         </div>
     </div>
-    <div>Currencies:
-        <div *ngFor="let currency of countryDetailsViewModel.currencies">
-            <div>{{currency}}</div>
-        </div>
-    </div>
-    <div>Timezones:
-        <div *ngFor="let timezone of countryDetailsViewModel.timezones">
-            <div>{{timezone}}</div>
-        </div>
-    </div>
-    <div *ngFor="let border of countryDetailsViewModel.borders">
-        <div (click)="setActiveCountry(border)"><a href="#"
-                (click)="$event.preventDefault(); setActiveCountry(border)">{{border}}</a></div>
-    </div>
-    <button (click)="toggleFaultyDataPanel()">report faulty data</button>
+
+    <button class="btn primary-colored" (click)="toggleFaultyDataPanel()">report faulty data</button>
     <div *ngIf="showFaultyDataPanel" app-faulty-data [countryNames]="countryDetailsViewModel.borders"></div>
 
 </div>

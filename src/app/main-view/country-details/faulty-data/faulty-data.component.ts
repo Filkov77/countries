@@ -1,7 +1,6 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { defer, EMPTY, Observable, of } from 'rxjs';
-import { catchError, delay, map, mergeMap, tap } from 'rxjs/operators';
+import { Component, Input } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 import { CountryService } from 'app/backend-api/country.service';
 import { NamedCountry } from 'app/backend-api/models/named-country.i';
@@ -59,6 +58,10 @@ export class FaultyDataComponent {
                 }
             })
         );
+    }
+
+    public submitBorders() {
+        // console.log(this.countryNames);
     }
 
 }

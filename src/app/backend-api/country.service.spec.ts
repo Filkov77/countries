@@ -55,7 +55,7 @@ describe('Service: GetCountries', () => {
 
     describe('getCountryDetails', () => {
 
-        fit('should return mocked country details', (done) => {
+        it('should return mocked country details', (done) => {
             httpMock.verify();
             const someCountry = 'someCountry';
             service.getCountryDetails(someCountry).subscribe(response => {
