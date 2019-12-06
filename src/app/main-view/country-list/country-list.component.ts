@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { map, tap } from 'rxjs/operators';
 
-import { Destroyable } from 'app/shared';
+import { ActivityService, Destroyable } from 'app/shared';
 
 import { CountryService } from '../../backend-api/country.service';
 import { CountryListElement } from '../../backend-api/models/country-list-element.i';
@@ -28,6 +29,8 @@ export class CountryListComponent extends Destroyable implements OnInit {
     @Output()
     selectCountry: EventEmitter<string> = new EventEmitter();
 
+    showOverlay = false;
+
     countries: CountryListElement[] | undefined;
     sortOptions: { label: string, value: SortOptions }[] | undefined;
 
@@ -35,13 +38,22 @@ export class CountryListComponent extends Destroyable implements OnInit {
 
     sortOrder!: SortOrder;
 
-    constructor(private countryService: CountryService) {
+    constructor(private countryService: CountryService, private activityService: ActivityService) {
         super();
     }
 
     ngOnInit() {
+
         this.subscriptions.push(
-            this.countryService.getCountries().subscribe(response => { this.countries = response; })
+            this.activityService.trackFinalization('country list pending operation',
+                this.countryService.getCountries().pipe(
+                    map(countries => { this.countries = countries; })
+                )
+            ).subscribe(),
+            this.activityService.activeCount('country list pending operation').pipe(
+                tap(activeProcessCount => {
+                    this.showOverlay = activeProcessCount > 0;
+                })).subscribe()
         );
 
         this.sortOptions = [

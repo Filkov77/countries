@@ -20,7 +20,7 @@ const getCountryDetailsValidResponse = [
     {
         'currencies': [{ 'code': 'BTN', 'name': 'Bhutanese ngultrum', 'symbol': 'Nu.' }, { 'code': 'INR', 'name': 'Indian rupee', 'symbol': '₹' }],
         'languages': [{ 'iso639_1': 'dz', 'iso639_2': 'dzo', 'name': 'Dzongkha', 'nativeName': 'རྫོང་ཁ' }],
-        'timezones': ['UTC+06:00'], 'borders': ['CHN', 'IND']
+        'timezones': ['UTC+06:00'], 'borders': ['CHN', 'IND'], 'alpha2Code': 'BT'
     }];
 
 describe('Service: GetCountries', () => {

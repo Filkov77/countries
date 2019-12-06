@@ -39,7 +39,12 @@
               "node_modules/font-awesome/scss/font-awesome.scss",
               "src/assets/css/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/jquery-jvectormap-2.0.3.min.js",
+              "src/assets/js/jquery-jvectormap-world-mill-en.js",
+              "src/assets/js/jquery-jvectormap-us-aea.js"
+            ]
           },
           "configurations": {
             "production": {

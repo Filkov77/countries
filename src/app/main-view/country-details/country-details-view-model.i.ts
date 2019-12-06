@@ -3,4 +3,5 @@ export interface CountryDetailsViewModel {
     currencies: string[];
     timezones: string[];
     borders: string[];
+    countryCode: string;
 }

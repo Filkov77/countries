@@ -11,5 +11,4 @@ export class MainViewComponent {
     setSelectedCountry(selectedCountryName: string) {
         this.selectedCountryName = selectedCountryName;
     }
-
 }

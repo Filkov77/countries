@@ -6,4 +6,5 @@ export interface CountryDetails {
     currencies: Currency[];
     timezones: string[];
     borders: string[];
+    alpha2Code: string;
 }

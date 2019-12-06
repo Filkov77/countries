@@ -1,9 +1,26 @@
-[app-country-list]             { width: 100%; height: 100%; background: #f7fbff;
+[app-country-list]          { width: 100%; height: 100%; background: $white;
 
-    p-dropdown          { min-width:'140em' }
+    img                     { max-width:90px; height:60px; }
 
-    .country-list-detail        { display: flex; justify-content: space-between; align-items: center; padding: 2em; border-bottom: 1px solid #d9dad9;
+    p-dropdown              { min-width:'140em'; }
 
-            img                 { max-width:200px; height:auto; }
-    }
+    p-panel                 { text-align:'center';
+        .ui-widget-header   { background-color: $p-light;}
 }
+}
+
+[app-country-details]       { width: 100%; height: 100%; background: $white; }
+
+[app-main-view]             { width: 100%; height: 100%; background: $white; }
+
+.primary-colored            {background-color: $primary;}
+.primary-dark-colored       {background-color :$p-dark;}
+.primary-light-colored      {background-color: $p-light;}
+.prefix-panel               {width: 100%; height: 30px;}
+.main-panel                 {width: 100%; height: 70px; text-align: center;}
+
+body .ui-dataview           {
+    .ui-dataview-header     {background-color: $primary;}
+}
+
+input                       {border-radius: 4px;}

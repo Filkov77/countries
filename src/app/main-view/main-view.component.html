@@ -1,3 +1,5 @@
-<div app-country-list *ngIf="!selectedCountryName" (selectCountry)="setSelectedCountry($event)"></div>
+<div class="prefix-panel primary-dark-colored"></div>
+<div app-country-list *ngIf="!selectedCountryName" (selectCountry)="setSelectedCountry($event)"
+    (processing)="processingTriggered($event)"></div>
 <div app-country-details *ngIf="selectedCountryName" [selectedCountryName]="selectedCountryName"
     (selectCountry)="setSelectedCountry($event)"></div>

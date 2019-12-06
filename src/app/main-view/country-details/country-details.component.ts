@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, mergeMap, tap } from 'rxjs/operators';
+import { iif, Observable, of } from 'rxjs';
+import { finalize, map, mergeMap, tap } from 'rxjs/operators';
 
-import { CountryListElement } from 'app/backend-api/models/country-list-element.i';
-import { Destroyable } from 'app/shared';
+import { CountryService } from 'app/backend-api/country.service';
+import { CountryDetails } from 'app/backend-api/models/country-details.i';
+import { NamedCountry } from 'app/backend-api/models/named-country.i';
+import { ActivityService, Destroyable } from 'app/shared';
 
-import { CountryService } from './../../backend-api/country.service';
-import { CountryDetails } from './../../backend-api/models/country-details.i';
 import { CountryDetailsViewModel } from './country-details-view-model.i';
 
 @Component({
@@ -15,59 +15,93 @@ import { CountryDetailsViewModel } from './country-details-view-model.i';
 })
 export class CountryDetailsComponent extends Destroyable implements OnChanges {
 
-    @Input()
-    selectedCountryName: string | undefined;
-
     @Output()
     selectCountry: EventEmitter<string> = new EventEmitter();
 
-    countryDetailsViewModel!: CountryDetailsViewModel;
+    @Input()
+    selectedCountryName: string | undefined;
+
+    countryDetailsViewModel: CountryDetailsViewModel | undefined;
 
     loaded = false;
+    showOverlay = false;
 
-    constructor(private countryService: CountryService) {
+    showFaultyDataPanel = false;
+
+    constructor(private countryService: CountryService, private activityService: ActivityService) {
         super();
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        console.log(0);
+
         if (changes.selectedCountryName) {
+
             if (this.selectedCountryName) {
-                // @TODO add subscription
-                this.countryService.getCountryDetails(changes.selectedCountryName.currentValue as string).pipe(
-                    mergeMap((countryDetails) => {
-                        return this.initCountyDetailsViewModel(countryDetails[0]);
-                    })).subscribe(countryDetailsViewModel => {
-                        this.countryDetailsViewModel = countryDetailsViewModel;
-                        this.loaded = true;
-                    });
+                this.subscriptions.push(
+                    this.activityService.trackFinalization('country details pending operation',
+                        this.countryService.getCountryDetails(changes.selectedCountryName.currentValue as string).pipe(
+                            mergeMap((countryDetails) => {
+                                return this.initCountyDetailsViewModel(countryDetails[0]);
+                            }),
+                            tap(countryDetailsViewModel => {
+                                this.countryDetailsViewModel = countryDetailsViewModel;
+                                this.loaded = true;
+
+                            }))).subscribe(),
+                    this.activityService.activeCount('country details pending operation').pipe(
+                        tap(activeProcessCount => {
+                            this.showOverlay = activeProcessCount > 0;
+                        })).subscribe()
+                );
             } else {
                 this.selectedCountryName = undefined;
             }
         }
     }
 
-    public setActiveCountry(borderCountry: string) {
-        console.log(1);
-        // @TODO refactory!!!
-        // this.selectedCountryName = borderCountry;
-        this.selectCountry.emit(borderCountry);
+    public setActiveCountry(activeCountry: string) {
+        // @TODO consider using model binding
+        this.selectCountry.emit(activeCountry);
     }
 
-    private initCountyDetailsViewModel(countryDetails: CountryDetails): Observable<CountryDetailsViewModel> {
-        return this.initBoarders(countryDetails.borders).pipe(
-            map(borderCountries => {
-                return {
-                    languages: countryDetails.languages.map(lang => lang.name),
-                    currencies: countryDetails.currencies.map(currency => currency.name),
-                    timezones: countryDetails.timezones,
-                    borders: borderCountries.map(country => country.name)
-                };
-            })
+    public setActiveCountryByCode(borderCountryCode: string) {
+        this.subscriptions.push(
+            this.getCountriesByCode([borderCountryCode]).
+                subscribe(countryName => {
+                    this.selectCountry.emit(countryName[0].name);
+                })
         );
     }
 
-    private initBoarders(countryCodes: string[]) {
+    public toggleFaultyDataPanel() {
+        this.showFaultyDataPanel = !this.showFaultyDataPanel;
+    }
+
+    private initCountyDetailsViewModel(countryDetails: CountryDetails): Observable<CountryDetailsViewModel> {
+
+        if (countryDetails.borders.length > 0) {
+            return this.getCountriesByCode(countryDetails.borders).pipe(
+                map(borderCountries => {
+                    return this.setCountryDetails(countryDetails, borderCountries);
+                })
+            );
+        }
+        else {
+            return of(this.setCountryDetails(countryDetails, []));
+        }
+    }
+
+    private setCountryDetails(countryDetails: CountryDetails, borderCountries: NamedCountry[]) {
+        return {
+            languages: countryDetails.languages.map(lang => lang.name),
+            currencies: countryDetails.currencies.map(currency => currency.name),
+            timezones: countryDetails.timezones,
+            borders: borderCountries.map(country => country.name),
+            countryCode: countryDetails.alpha2Code
+        };
+    }
+
+    private getCountriesByCode(countryCodes: string[]) {
         return this.countryService.getCountryDetailsByCode(countryCodes);
     }
 

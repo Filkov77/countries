@@ -8,8 +8,6 @@ import { ActivityEmission, ActivityService, Destroyable } from 'app/shared';
     templateUrl: './app.component.html'
 })
 export class AppComponent extends Destroyable implements OnInit {
-    loading = true;
-    showLineLoader = false;
     showOverlay = false;
     overlayMessage = 'Loading, please wait...';
     isConnected = true;
@@ -28,17 +26,11 @@ export class AppComponent extends Destroyable implements OnInit {
     ngOnInit() {
         const {
             activity,
-            onLineLoaderActivity,
             onOverlayActivity
         } = this;
         this.subscriptions.push(
-            activity.activeCount('line_loader').subscribe(onLineLoaderActivity.bind(this)),
             activity.allEmissions<string>('overlay').subscribe(onOverlayActivity.bind(this))
         );
-    }
-
-    private onLineLoaderActivity(activeEmitters: number) {
-        this.showLineLoader = activeEmitters > 0;
     }
 
     private onOverlayActivity({ activeEmitters, value }: ActivityEmission<string>) {
