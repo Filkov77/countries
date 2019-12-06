@@ -6,5 +6,6 @@ Learn more about design
 Unit tests, show at least happy flows of all components
 Estimate system configuration with more time
 Find more time to analyse 3-d party controls before using them
+Show more structured flow in the VCS
 Spend more time on implementation
 Test more
